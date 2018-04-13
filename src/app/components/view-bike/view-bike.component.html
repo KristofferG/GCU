@@ -1,0 +1,62 @@
+<h2>Alla cyklar</h2>
+
+  <div class="form-row">
+    <div class="col-1">
+      <input class="form-control" name="num" [(ngModel)]="num" placeholder="#">
+    </div>
+    <div class="col">
+      <input class="form-control" name="term" [(ngModel)]="term" placeholder="Beskrivning...">
+    </div>
+  </div>
+
+  <div>
+
+    <table id="table" class="table">
+    <thead>
+      <tr>
+        <th>Nummer</th>
+        <th>Modell</th>
+        <th>Typ</th>
+        <th>Växlar</th>
+        <th>Storlek</th>
+        <th>Korg</th>
+        <th>Depå</th>
+        <th>Status</th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bike of bikes | bikeNumberFilter:num | bikeFilter:term">
+        <td>{{bike.number}}</td>
+        <td>{{bike.name}}</td>
+        <td>{{bike.type}}</td>
+        <td>{{bike.gears}}</td>
+        <td>{{bike.size}}</td>
+        <td>{{bike.basket}}</td>
+        <td>{{bike.depot}}</td>
+        <td>{{bike.status}}</td>
+        <td><div *ngIf="bike.status=='Uthyrd'">
+          <button class="btn btn-primary btn-sm" type="button" (click)="makeBikeAvail(bike); $event.stopPropagation();">Åter</button>
+        </div>
+        <div *ngIf="bike.status=='Ledig'">
+          <button class="btn btn-success btn-sm" type="button" (click)="makeBikeOcc(bike); $event.stopPropagation();">Lämna ut</button>
+        </div>
+        <div *ngIf="bike.status=='Behöver reparation'">
+          <button class="btn btn-primary btn-sm" type="button" (click)="makeBikeAvail(bike); $event.stopPropagation();">Lagad</button>
+        </div>
+        </td>
+        <td>
+          <div *ngIf="bike.status=='Uthyrd' || bike.status=='Ledig'">
+          <button class="btn btn-danger btn-sm" type="button" (click)="makeBikeBroken(bike); $event.stopPropagation();">Behöver reperation</button>
+          </div>
+        </td>
+        <td> <button class="btn btn-danger btn-sm" type="button" (click)="deleteBike(bike); $event.stopPropagation();">Radera</button></td>
+
+      </tr>
+    </tbody>
+  </table>
+ </div>
+ <a class="btn btn-primary" [routerLink]="['/add-bike']">Lägg till cykel</a>

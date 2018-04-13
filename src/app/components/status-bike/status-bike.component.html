@@ -1,0 +1,38 @@
+<h2>Ändra status</h2>
+  <div>
+    <table id="table" class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Nummer</th>
+        <th>Modell</th>
+        <th>Korg</th>
+        <th>Depå</th>
+        <th> </th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bike of bikesByDepot">
+        <td>
+          <div *ngIf="bike.status=='Uthyrd'">
+            <button class="btn btn-primary btn-lg" type="button" (click)="makeBikeAvail(bike); $event.stopPropagation();">IN</button>
+          </div>
+          <div *ngIf="bike.status=='Ledig'">
+            <button class="btn btn-success btn-lg" type="button" (click)="makeBikeOcc(bike); $event.stopPropagation();">UT</button>
+          </div>
+        </td>
+        <td><h3>{{bike.number}}</h3></td>
+        <td>{{bike.name}} - {{bike.status}}<br>{{bike.type}} {{bike.gears}} växlar {{bike.size}}"</td>
+        <td>{{bike.basket}}</td>
+        <td>{{bike.depot}}</td>
+        <td>
+          <div *ngIf="bike.status=='Uthyrd' || bike.status=='Ledig'">
+          <button class="btn btn-danger btn-sm" type="button" (click)="makeBikeBroken(bike); $event.stopPropagation();"> X </button>
+          </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+ </div>

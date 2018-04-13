@@ -1,0 +1,31 @@
+<h2 class="page-header">Dashboard</h2>
+
+<h3>Cyklar per depå</h3>
+<div>
+  <table id="depotTable" class="table">
+  <thead>
+    <tr>
+      <th>Depå</th>
+      <th></th>
+      <th>Antal cyklar</th>
+      <th>Lediga</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let depot of depots">
+      <td>{{depot.name}}</td>
+      <td width="70%">
+
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+      </td>
+      <td>{{depot.name.length}}</td>
+      <td></td>
+
+    </tr>
+  </tbody>
+</table>
+</div>

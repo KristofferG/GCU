@@ -1,0 +1,28 @@
+<h2>Alla depåer</h2>
+  <div>
+    <table id="table" class="table">
+    <thead>
+      <tr>
+        <th>Namn</th>
+        <th>Förkortning</th>
+        <th>Address</th>
+        <th>Telefon</th>
+        <th> </th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let depot of depots">
+
+        <td>{{depot.name}}</td>
+        <td>{{depot.shortname}}</td>
+        <td>{{depot.address}}</td>
+        <td>{{depot.phone}}</td>
+        <td> <button class="btn btn-warning btn-sm" type="button" (click)="editDepot(depot); $event.stopPropagation();">Edit</button></td>
+        <td> <button class="btn btn-danger btn-sm" type="button" (click)="deleteDepot(depot); $event.stopPropagation();">Radera</button></td>
+
+      </tr>
+    </tbody>
+  </table>
+ </div>
+ <a class="btn btn-primary" [routerLink]="['/add-depot']">Lägg till depå</a>
